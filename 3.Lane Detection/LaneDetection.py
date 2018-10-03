@@ -91,7 +91,6 @@ def clean_lines(lines, threshold):
         for x1, y1, x2, y2 in line:
             k = (y2 - y1) / (x2 - x1)
             slope.append(k)
-    # slope = [(y2 - y1) / (x2 - x1) for line in lines for x1, y1, x2, y2 in line]
     while len(lines) > 0:
         # 计算斜率的平均值，因为后面会将直线和斜率值弹出
         mean = np.mean(slope)
@@ -126,36 +125,62 @@ def calc_lane_vertices(point_list, ymin, ymax):
     return [(xmin, ymin), (xmax, ymax)]
 
 
-# 图片预处理
+# 检测处理
 def process_an_image(img):
+    # 查看图片尺寸
+    print(img.shape)  # (540, 960, 3)
     # 目标区域的四个点坐标，roi_vtx是一个三维的数组
     roi_vtx = np.array([[(0, img.shape[0]), (460, 325), (520, 325), (img.shape[1], img.shape[0])]])
+    print(roi_vtx.shape)  # (1, 4, 2)
+    print(roi_vtx)
+    '''
+        [[[  0 540]
+        [460 325]
+        [520 325]
+        [960 540]]]
+    '''
     # 图像转换为灰度图
     gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    plt.subplot(231)
+    plt.imshow(gray)
+    plt.title('Gray', fontsize=15)
     # 使用高斯模糊去噪声
     blur_gray = cv2.GaussianBlur(gray, (blur_ksize, blur_ksize), 0, 0)
+    plt.subplot(232)
+    plt.imshow(blur_gray)
+    plt.title('blur_gray', fontsize=15)
     # 使用Canny进行边缘检测
     edges = cv2.Canny(blur_gray, canny_lthreshold, canny_hthreshold)
+    plt.subplot(233)
+    plt.imshow(edges)
+    plt.title('edges', fontsize=15)
     # 对边缘检测的图像生成图像蒙板，去掉不感兴趣的区域，保留兴趣区
     roi_edges = roi_mask(edges, roi_vtx)
+    plt.subplot(234)
+    plt.imshow(roi_edges)
+    plt.title('roi_edges', fontsize=15)
     # 使用霍夫直线检测，并且绘制直线
     line_img = hough_lines(roi_edges, rho, theta, threshold, min_line_length, max_line_gap)
+    plt.subplot(235)
+    plt.imshow(line_img)
+    plt.title('line_img', fontsize=15)
     # 将处理后的图像与原图做融合
     res_img = cv2.addWeighted(img, 0.8, line_img, 1, 0)
-    return res_img
+    plt.subplot(236)
+    plt.imshow(res_img)
+    plt.title('res_img', fontsize=15)
+    plt.show()
 
 
-# img = mplimg.imread("./images/lane.jpg")
-# print("start to process the image....")
-# res_img = process_an_image(img)
-# print("show you the image....")
-# plt.imshow(res_img)
-# plt.show()
+img = mplimg.imread("./images/lane.jpg")
+print("start to process the image....")
+process_an_image(img)
+print("show you the image....")
 
-print("start to process the video....")
-output = 'video_2_xlt.mp4'
-clip = VideoFileClip("./videos/video_2.mp4")
-# 对视频的每一帧进行处理
-out_clip = clip.fl_image(process_an_image)
-# 将处理后的视频写入新的视频文件
-out_clip.write_videofile(output, audio=True)
+# print("start to process the video....")
+# output = 'video_2_xlt.mp4'
+# clip = VideoFileClip("./videos/video_2.mp4")
+# # 对视频的每一帧进行处理
+# out_clip = clip.fl_image(process_an_image)
+# # 将处理后的视频写入新的视频文件
+# out_clip.write_videofile(output, audio=True)
