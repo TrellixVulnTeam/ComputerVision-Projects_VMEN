@@ -36,7 +36,7 @@ suanzi_y = np.array([[-1, -2, -1],
                      [1, 2, 1]])
 
 # 打开图像并转化成灰度图像
-image = Image.open("./images/test.jpg").convert("L")
+image = Image.open("./images/test_man.jpg").convert("L")
 
 # 转化成图像矩阵
 image_array = np.array(image)
@@ -71,7 +71,7 @@ plt.show()
 '''
     OpenCV实现
 '''
-img = cv2.imread("./images/test.jpg", 0)
+img = cv2.imread("./images/test_man.jpg", 0)
 
 x = cv2.Sobel(img, cv2.CV_16S, 1, 0)
 y = cv2.Sobel(img, cv2.CV_16S, 0, 1)

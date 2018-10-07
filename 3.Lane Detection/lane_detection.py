@@ -172,7 +172,7 @@ def process_an_image(img):
     plt.show()
 
 
-img = mplimg.imread("./images/lane.jpg")
+img = mplimg.imread("./images/test_lane.jpg")
 print("start to process the image....")
 process_an_image(img)
 print("show you the image....")

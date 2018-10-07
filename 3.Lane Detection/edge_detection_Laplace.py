@@ -14,7 +14,7 @@ suanzi2 = np.array([[1, 1, 1],
                     [1, 1, 1]])
 
 # 打开图像并转化成灰度图像
-image = Image.open("./images/test.jpg").convert("L")
+image = Image.open("./images/test_man.jpg").convert("L")
 image_array = np.array(image)
 
 # 利用signal的convolve计算卷积
