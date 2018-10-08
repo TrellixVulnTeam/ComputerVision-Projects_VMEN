@@ -1,0 +1,46 @@
+import numpy as np
+import cv2
+from matplotlib import pyplot as plt
+
+imgname1 = './images/test_SIFT1.png'
+imgname2 = './images/test_SIFT2.png'
+
+sift = cv2.xfeatures2d.SIFT_create()
+
+img1 = cv2.imread(imgname1)
+gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)  # 灰度处理图像
+kp1, des1 = sift.detectAndCompute(img1, None)  # des是描述子
+
+img2 = cv2.imread(imgname2)
+gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)  # 灰度处理图像
+kp2, des2 = sift.detectAndCompute(img2, None)  # des是描述子
+
+hmerge = np.hstack((gray1, gray2))  # 水平拼接
+plt.subplot(111)
+plt.imshow(hmerge)
+plt.title('gray', fontsize=15)
+plt.show()
+
+img3 = cv2.drawKeypoints(img1, kp1, img1, color=(255, 0, 255))  # 画出特征点，并显示为红色圆圈
+img4 = cv2.drawKeypoints(img2, kp2, img2, color=(255, 0, 255))  # 画出特征点，并显示为红色圆圈
+hmerge = np.hstack((img3, img4))  # 水平拼接
+plt.subplot(111)
+plt.imshow(hmerge)
+plt.title('point', fontsize=15)
+plt.show()
+
+# BFMatcher解决匹配
+bf = cv2.BFMatcher()
+matches = bf.knnMatch(des1, des2, k=2)
+# 调整ratio
+good = []
+for m, n in matches:
+    if m.distance < 0.75 * n.distance:
+        good.append([m])
+
+img5 = cv2.drawMatchesKnn(img1, kp1, img2, kp2, matches, None, flags=2)
+plt.subplot(111)
+plt.imshow(img5)
+plt.title('BFmatch', fontsize=15)
+plt.show()
+
