@@ -2,6 +2,19 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
+'''
+    基于BFmatcher的SIFT实现：
+
+    BFmatcher（Brute-Force Matching）暴力匹配，应用BFMatcher.knnMatch( )函数来进行核心的匹配
+    knnMatch（k-nearest neighbor classification）k近邻分类算法。 
+    
+    kNN算法则是从训练集中找到和新数据最接近的k条记录，然后根据他们的主要分类来决定新数据的类别。
+    kNN方法在类别决策时，只与极少量的相邻样本有关。
+    由于kNN方法主要靠周围有限的邻近的样本，而不是靠判别类域的方法来确定所属类别的，因此对于类域的交叉或重叠较多的待分样本集来说，kNN方法较其他方法更为适合。 
+ 经检验。
+    BFmatcher在做匹配时会耗费大量的时间。 
+'''
+
 imgname1 = './images/test_SIFT1.png'
 imgname2 = './images/test_SIFT2.png'
 
@@ -43,4 +56,3 @@ plt.subplot(111)
 plt.imshow(img5)
 plt.title('BFmatch', fontsize=15)
 plt.show()
-

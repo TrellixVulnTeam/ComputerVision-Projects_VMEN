@@ -2,6 +2,15 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
+'''
+    ORB(Oriented Fast and Rotated BRIEF)，结合Fast与Brief算法，并给Fast特征点增加了方向性，使得特征点具有旋转不变性，并提出了构造金字塔方法，解决尺度不变性，但文章中没有具体详述。
+    
+    特征提取是由FAST（Features from  Accelerated Segment Test）算法发展来的，特征点描述是根据BRIEF（Binary Robust Independent Elementary Features）特征描述算法改进的。
+    ORB特征是将FAST特征点的检测方法与BRIEF特征描述子结合起来，并在它们原来的基础上做了改进与优化。
+    ORB主要解决BRIEF描述子不具备旋转不变性的问题。
+    实验证明，ORB远优于之前的SIFT与SURF算法，ORB算法的速度是sift的100倍，是surf的10倍。
+'''
+
 imgname1 = './images/test_SIFT1.png'
 imgname2 = './images/test_SIFT2.png'
 
