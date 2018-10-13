@@ -1,27 +1,37 @@
 import numpy as np
+import random
 import cv2
 import os
 
 IMAGE_SIZE = 64
 
 
-def read_path(path_name, son_path_name):
-    # 判断该路径下是否有数据
-    exist_code = file_exit(path_name, son_path_name)
-    if exist_code == 1:
-        # 如果有，则全路径是当前路径上一级＋测试集文件夹名
-        full_path = path_name + '/' + son_path_name
-        for dir_item in os.listdir(full_path):
-            # 遍历所有的图片
-            if dir_item.endswith('.jpg'):
-                # 如果格式是图片，则进行大小处理
-                image = cv2.imread(full_path + '/' + dir_item)
-                image = resize_image(image, IMAGE_SIZE, IMAGE_SIZE)
-                images.append(image)
-                # 将图片加入到队列
-                labels.append(son_path_name)
-    # 将标签加入到队列
-    # print(labels)
+# 重新规范人脸数据
+def resize_pic(path):
+    imgs = list()
+    images = list()
+    labels = list()
+    # 遍历所有样本图片
+    for img in os.listdir(path):
+        # 名称存入一个list
+        imgs.append(img)
+    # 打乱正负样本顺序
+    random.shuffle(imgs)
+    # 遍历所有的图片
+    for img in imgs:
+        if img.endswith('.jpg'):
+            # 如果格式是图片，则进行大小处理
+            image = cv2.imread(path + '/' + img)
+            image = resize_image(image, IMAGE_SIZE, IMAGE_SIZE)
+            # 将图片加入到队列
+            images.append(image)
+            # 判断是否为人脸样本
+            name = img.split('.')
+            if name[0].endswith('#'):
+                # 如果是负样本
+                labels.append(0)
+            else:
+                labels.append(1)
     return images, labels
 
 
@@ -64,10 +74,14 @@ def resize_image(image, height=IMAGE_SIZE, width=IMAGE_SIZE):
 
 
 # 读取目录下数据集
-images, labels = read_path(path_name, son_path_name)
+images, labels = resize_pic('./data/origin_sample')
+
+# 一共283个正负样本
+print(len(images))  # 283
+print(len(labels))  # 283
 
 # 转换图片格式，images尺寸为 ( 图片数量 * IMAGE_SIZE * IMAGE_SIZE * 3 )
 images = np.array(images)
 
-# 设置样本标记
-labels = np.array([0 if label == ('traindata') else 1 for label in labels])
+# 转型成功
+print(images.shape)  # (283, 64, 64, 3)
