@@ -149,7 +149,7 @@ def negative_sample():
 
 
 # 正样本采样，即人脸采样
-positive_sample()
+# positive_sample()
 
 # 负样本采样，即人脸周边区域的采样
 negative_sample()
