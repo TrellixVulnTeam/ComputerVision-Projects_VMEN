@@ -10,4 +10,4 @@
 |[2.kNN for Image Reduction](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/2.kNN%20for%20Image%20Reduction)|使用KNN算法实现对图片的色彩降维|
 |[3.Lane Detection](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/3.Lane%20Detection)|基于边缘检测主流算法和霍夫曼变换实现车道检测|
 |[4.Local Feature](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/4.Local%20Feature)|CV领域局部特征包括：斑点检测和角点检测以及SIFT算子|
-|[5.Face Detection from Training](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/5.Face%20Detection%20from%20Training)|从底层的数据采样-CNN模型搭建-训练-模型存储和读取-滑窗采样-人脸识别，实现人脸检测算法|
+|[5.Face Detection from Training](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/5.Face%20Detection%20from%20Training)|从底层的数据采样到训练模型实现人脸检测算法|
