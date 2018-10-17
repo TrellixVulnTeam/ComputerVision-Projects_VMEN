@@ -40,10 +40,10 @@
 <img width="600" height="400" src="./images/hough_transform.png"/>
 
 #### ·车道线检测目标图片
-<img width="600" height="400" src="./images/test_lane.png"/>
+<img width="600" height="400" src="./images/test_lane.jpg"/>
 
 #### ·车道线检测效果图片
-<img width="600" height="400" src="./images/lane_detection.png"/>
+<img width="600" height="420" src="./images/lane_detection.png"/>
 
 #### ·车道线检测分步效果图片
-<img width="600" height="400" src="./images/lane_detection_each_step.png"/>
+<img width="600" height="420" src="./images/lane_detection_each_step.png"/>
