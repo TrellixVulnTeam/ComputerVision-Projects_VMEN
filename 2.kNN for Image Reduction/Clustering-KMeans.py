@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from scipy import stats
 from sklearn.cluster import KMeans
 from sklearn.datasets import load_digits
 from sklearn.datasets import load_sample_image

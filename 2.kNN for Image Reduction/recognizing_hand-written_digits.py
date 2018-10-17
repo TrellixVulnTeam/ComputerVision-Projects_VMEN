@@ -1,6 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
-import operator
 from numpy import *
 from os import listdir
 from sklearn import datasets, svm, metrics
