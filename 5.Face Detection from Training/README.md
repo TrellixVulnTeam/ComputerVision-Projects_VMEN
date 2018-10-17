@@ -22,4 +22,4 @@
 <img width="600" height="400" src="./images/final_result.png"/>
 
 #### ·使用OpenCV组件实现人脸检测
-<img width="600" height="400" src="./images/face_detection.png"/>
+<img width="600" height="400" src="./images/face_detection.jpg"/>
