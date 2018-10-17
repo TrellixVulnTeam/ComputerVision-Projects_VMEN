@@ -47,3 +47,6 @@
 
 #### ·车道线检测分步效果图片
 <img width="600" height="420" src="./images/lane_detection_each_step.png"/>
+
+#### ·车道线检测动态实现实时效果
+<video width="600" height="420" src="./videos/video_1_xlt.mp4"/>
