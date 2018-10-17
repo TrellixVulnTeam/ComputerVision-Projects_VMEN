@@ -16,35 +16,34 @@
 
 ### 效果图
 #### ·角点检测原始图
-<img width="600" height="400" src="./images/test_corner.png"/>
+<img width="600" height="300" src="./images/test_corner.jpg"/>
 
 #### ·FAST角点检测（极大值抑制）
-<img width="600" height="400" src="./images/corner_detectin_Fast_false.png"/>
+<img width="600" height="300" src="./images/corner_detectin_Fast_false.png"/>
 
 #### ·FAST角点检测（无极大值抑制）
-<img width="600" height="400" src="./images/corner_detectin_Fast_true.png"/>
+<img width="600" height="300" src="./images/corner_detectin_Fast_true.png"/>
 
 #### ·Harris角点检测
-<img width="600" height="400" src="./images/corner_detectin_Harris.png"/>
+<img width="600" height="300" src="./images/corner_detectin_Harris.png"/>
 
 #### ·斑点检测原始图
 <img width="600" height="400" src="./images/blob_image.png"/>
 
 #### ·斑点检测实现效果
-<img width="600" height="400" src="./images/blob_detection.png"/>
+<img width="600" height="430" src="./images/blob_detection.png"/>
 
 #### ·SIFT算法目标图片
-<img width="300" height="200" src="./images/test_SIFT1.png"/>
-<img width="300" height="200" src="./images/test_SIFT2.png"/>
+<img width="300" height="240" src="./images/test_SIFT1.png"/> <img width="300" height="240" src="./images/test_SIFT2.png"/>
 
 #### ·SIFT_BFmatch
-<img width="600" height="400" src="./images/SIFT_BFmatch.png"/>
+<img width="600" height="420" src="./images/SIFT_BFmatch.png"/>
 
 #### ·SIFT_BFmatch_ORB
-<img width="600" height="400" src="./images/SIFT_BFmatch_ORB.png"/>
+<img width="600" height="420" src="./images/SIFT_BFmatch_ORB.png"/>
 
 #### ·SIFT_FlannBasedMatcher
-<img width="600" height="400" src="./images/SIFT_FlannBasedMatcher.png"/>
+<img width="600" height="420" src="./images/SIFT_FlannBasedMatcher.png"/>
 
 #### ·SURF_FlannBasedMatcher
-<img width="600" height="400" src="./images/SURF_FlannBasedMatcher.png"/>
+<img width="600" height="420" src="./images/SURF_FlannBasedMatcher.png"/>
