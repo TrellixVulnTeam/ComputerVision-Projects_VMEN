@@ -7,7 +7,7 @@
 |名称|作用|
 |:-------------:|:-------------:|
 |1.CNN_model_load|通过Keras实现CNN模型搭建并读取模型结构和参数信息|
-|2.data_analysi|对CIFAR-10数据集进行简单的解析|
+|2.data_analysis|对CIFAR-10数据集进行简单的解析|
 |3.MLP_classifier|通过Kears实现MLP分类器训练并识别|
 |4.CNN_classifer|通过Kears实现CNN分类器训练并识别|
 |5.data_enhancement|引入数据增强处理图像数据集|
