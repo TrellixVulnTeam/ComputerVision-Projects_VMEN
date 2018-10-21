@@ -13,4 +13,4 @@
 
 ### 效果图
 #### ·CIFAR-10数据集样例数据显示
-<img width="800" height="200" src="./images/slide_window.png"/>
+<img width="800" height="200" src="./images/examples.png"/>
