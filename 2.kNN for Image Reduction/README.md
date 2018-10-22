@@ -1,4 +1,5 @@
-## kNN for Image Reduction (kNN图片色彩降维)
+## kNN for Image Reduction 
+## (kNN图片色彩降维)
 
 ### 项目背景
 >  该项目出发点在于从底层实现KMeans聚类算法在图片色彩降维上的应用，并用近邻算法kNN，实现基本的手写数字数据集的分类。
