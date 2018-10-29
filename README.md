@@ -13,3 +13,5 @@
 |[5.Face Detection from Training](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/5.Face%20Detection%20from%20Training)|从底层的数据采样到训练模型实现人脸检测算法|
 |[6.CIFAR-10 Classification by MLP+CNN](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/6.CIFAR-10%20Classification%20by%20MLP%2BCNN)|搭建MLP和CNN模型对CIFAR-10图像数据进行识别分类|
 |[7.Transfer Learning for Flowers Classifier by VGG16](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/7.Transfer%20Learning%20for%20Flowers%20Classifier%20by%20VGG16)|迁移学习:基于VGG-16模型实现花朵分类|
+|[8.Transfer Learning for Dog Classifier by VGG16](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/8.Transfer%20Learning%20for%20Dog%20Classifier%20by%20VGG16)|迁移学习:基于VGG-16模型实现狗狗分类|
+ 	
