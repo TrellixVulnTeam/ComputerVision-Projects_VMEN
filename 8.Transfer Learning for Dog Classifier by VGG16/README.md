@@ -12,7 +12,11 @@
 
 方法：将最后的全连接层删除，换成新的连接层。冻结前面模型的权重，只训练最后一个连接层的权重。
 
-  
+### 数据集
+[1.狗狗图像数据集压缩包](https://s3.cn-north-1.amazonaws.com.cn/static-documents/nd101/v4-dataset/dogImages.zip)
+
+[2.VGG16瓶颈特征模型](https://s3.cn-north-1.amazonaws.com.cn/static-documents/nd101/v4-dataset/DogVGG16Data.npz)
+
 ### 代码流程
 |名称|作用|
 |:-------------|:-------------:|
