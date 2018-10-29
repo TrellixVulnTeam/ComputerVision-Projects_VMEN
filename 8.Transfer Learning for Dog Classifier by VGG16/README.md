@@ -21,8 +21,5 @@
 |3.model_GAP|迁移学习VGG16模型尾部衔接GAP层|
 
 ### 效果图
-#### ·目标预测实例花朵图像
-<img width="500" height="400" src="./images/example.png"/>
-
-#### ·模型预测概率分布统计
-<img width="500" height="400" src="./images/prediction.png"/>
+#### ·数据集部分图像数据展示
+<img width="500" height="300" src="./images/examples.png"/>
