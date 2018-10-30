@@ -23,6 +23,7 @@
 |1.data_preprocess|加载狗狗数据预处理|
 |2.model_Softmax|迁移学习VGG16模型尾部衔接Softmax全连接层|
 |3.model_GAP|迁移学习VGG16模型尾部衔接GAP层|
+|bottleneck|去除VGG16模型全连接层实现瓶颈冻结模型结构|
 
 ### 效果图
 #### ·数据集部分图像数据展示
