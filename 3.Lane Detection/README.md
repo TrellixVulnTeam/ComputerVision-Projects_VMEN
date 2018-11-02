@@ -11,6 +11,7 @@
 |edge_detection_Laplace|基于Laplace算子的边缘检测效果实现|
 |edge_detection_Prewitt|基于Prewitt算子的边缘检测效果实现|
 |edge_detection_Sobel|基于Sobel算子的边缘检测效果实现|
+|CNN_filter|CNN过滤器激活图可视化|
 |hough_transform|霍夫曼变换实现|
 |medium_filter|中值滤波效果实现|
 |lane_detection|车道线检测实现及效果面向图片和视频|
@@ -33,6 +34,18 @@
 
 #### ·Sobel算子OpenCV边缘检测实现
 <img width="600" height="400" src="./images/edge_detection_sobel_CV.png"/>
+
+#### ·CNN过滤器激活目标图片
+<img width="600" height="400" src="./images/car.jpg"/>
+
+#### ·OpenCV读取汽车图片
+<img width="600" height="400" src="./images/car_show.png"/>
+
+#### ·CNN过滤器可视化
+<img width="600" height="400" src="./images/filter.png"/>
+
+#### ·CNN过滤器扫描效果
+<img width="600" height="400" src="./images/car_filter.png"/>
 
 #### ·霍夫曼变换目标图片
 <img width="600" height="400" src="./images/test_hough.png"/>
