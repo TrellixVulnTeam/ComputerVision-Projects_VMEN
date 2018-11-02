@@ -39,13 +39,13 @@
 <img width="600" height="400" src="./images/car.jpg"/>
 
 #### ·OpenCV读取汽车图片
-<img width="600" height="400" src="./images/car_show.png"/>
+<img width="500" height="400" src="./images/car_show.png"/>
 
 #### ·CNN过滤器可视化
-<img width="600" height="400" src="./images/filter.png"/>
+<img width="600" height="300" src="./images/filter.png"/>
 
 #### ·CNN过滤器扫描效果
-<img width="600" height="400" src="./images/car_filter.png"/>
+<img width="1000" height="270" src="./images/car_filter.png"/>
 
 #### ·霍夫曼变换目标图片
 <img width="600" height="400" src="./images/test_hough.png"/>
