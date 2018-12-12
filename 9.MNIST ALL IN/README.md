@@ -7,7 +7,7 @@
 目标：用Softmax回归和CNN实现手写数字分类
 
 ### 数据集
-[1.MNIST图像数据集](http://yann.lecun.com/exdb/mnist/)
+[MNIST图像数据集](http://yann.lecun.com/exdb/mnist/)
 
 ### 代码流程
 |名称|作用|

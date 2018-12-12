@@ -1,11 +1,6 @@
-import keras
 import numpy as np
 import matplotlib.pyplot as plt
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten
-from keras.callbacks import ModelCheckpoint
 from keras.datasets import cifar10
-from keras.utils import np_utils
 
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 
