@@ -2,19 +2,20 @@
 ## (CIFAR-10数据集基础解析及操作)
 
 ### 项目背景
-背景：数据集60000张图，每张都是手写数字0~9，共10种
-
-目标：用Softmax回归和CNN实现手写数字分类
+背景：该数据集共有60000张彩色图像，这些图像是32*32，分为10个类，每类6000张图。这里面有50000张用于训练，构成了5个训练批，每一批10000张图；另外10000用于测试，单独构成一批。测试批的数据里，取自10类中的每一类，每一类随机取1000张。抽剩下的就随机排列组成了训练批。注意一个训练批中的各类图像并不一定数量相同，总的来看训练批，每一类都有5000张图。通过搭建读取网络和训练网络，实现图像识别。
 
 ### 数据集
-[MNIST图像数据集](http://yann.lecun.com/exdb/mnist/)
+[CIFAR-10图像数据集](http://www.cs.toronto.edu/~kriz/cifar.html)
 
 ### 代码流程
 |名称|作用|
 |:-------------|:-------------:|
-|1.download|数据集下载|
-|2.save_pic|解析数据集图片并保存|
-|3.label|查看数据label|
-|4.softmax_regression|Softmax回归实现手写数字识别分类|
-|5.convolutional|卷积网络实现手写数字识别分类|
-
+|1.cifar10_download|数据集下载|
+|2.TensorFlow_READ|使用TensorFlow数据读取机制|
+|3.cifar10_extract|CIFAR-10数据集抽取|
+|cifar10_input|数据阵列读取以及数据增强功能|
+|cifar10_input_test|读取输入过程验证|
+|cifar10|核心模型搭建|
+|cifar10_train|核心训练步骤|
+|cifar10_multi_gpu_train|多GPU训练过程|
+|cifar10_eval|模型评测|
