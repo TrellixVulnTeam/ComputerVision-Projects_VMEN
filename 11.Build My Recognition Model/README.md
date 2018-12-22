@@ -1,8 +1,8 @@
-### 3. 打造自己的图像识别模型
+## 11.Build My Recognition Model
+## (打造自己的高效图像识别分类模型)
 
-#### 运行方法
-
-**3.2 数据准备**
+### 项目流程
+1.数据准备
 
 首先需要将数据转换成tfrecord的形式。在data_prepare文件夹下，运行：
 ```
@@ -12,22 +12,19 @@ python data_convert.py -t pic/ \
   --num-threads 2 \
   --dataset-name satellite
 ```
-这样在pic文件夹下就会生成4个tfrecord文件和1个label.txt文件。
+pic文件夹下会生成4个tfrecord文件和1个label.txt文件。
 
-**3.3.2 定义新的datasets 文件**
+2.定义新的datasets文件：对Slim源码做修改。
 
-参考3.3.2小节对Slim源码做修改。
-
-**3.3.3 准备训练文件夹**
-
-在slim文件夹下新建一个satellite目录。在这个目录下做下面几件事情：
+3.准备训练文件夹
+在slim文件夹下新建一个satellite目录：
 - 新建一个data 目录，并将第3.2中准备好的5个转换好格式的训练数据复制进去。
 - 新建一个空的train_dir目录，用来保存训练过程中的日志和模型。
-- 新建一个pretrained目录，在slim的GitHub页面找到Inception V3 模型的下载地址http://download.tensorflow.org/models/inception_v3_2016_08_28.tar.gz 下载并解压后，会得到一个inception_v3.ckpt 文件，将该文件复制到pretrained 目录下（这个文件在chapter_3_data/文件中也提供了）
+- 新建一个pretrained目录，在slim的GitHub页面找到Inception_V3模型的下载地址http://download.tensorflow.org/models/inception_v3_2016_08_28.tar.gz
 
-**3.3.4 开始训练**
+4.开始训练
 
-（在slim文件夹下运行）训练Logits层：
+在slim文件夹下运行训练Logits层：
 ```
 python train_image_classifier.py \
   --train_dir=satellite/train_dir \
@@ -70,7 +67,7 @@ python train_image_classifier.py \
   --weight_decay=0.00004
 ```
 
-**3.3.6 验证模型准确率**
+5.验证模型准确率
 
 在slim文件夹下运行：
 ```
@@ -83,14 +80,14 @@ python eval_image_classifier.py \
   --model_name=inception_v3
 ```
 
-**3.3.7 TensorBoard 可视化与超参数选择**
+6.TensorBoard 可视化与超参数选择
 
 打开TensorBoard：
 ```
 tensorboard --logdir satellite/train_dir
 ```
 
-**3.3.8 导出模型并对单张图片进行识别**
+7.导出模型并对单张图片进行识别
 
 在slim文件夹下运行：
 ```
@@ -118,10 +115,3 @@ python classify_image_inception_v3.py \
   --label_path data_prepare/pic/label.txt \
   --image_file test_image.jpg
 ```
-
-
-#### 拓展阅读
-
-- TensorFlow Slim 是TensorFlow 中用于定义、训练和验证复杂网络的 高层API。官方已经使用TF-Slim 定义了一些常用的图像识别模型， 如AlexNet、VGGNet、Inception模型、ResNet等。本章介绍的Inception V3 模型也是其中之一， 详细文档请参考： https://github.com/tensorflow/models/tree/master/research/slim。
-- 在第3.2节中，将图片数据转换成了TFRecord文件。TFRecord 是 TensorFlow 提供的用于高速读取数据的文件格式。读者可以参考博文（ http://warmspringwinds.github.io/tensorflow/tf-slim/2016/12/21/tfrecords-guide/ ）详细了解如何将数据转换为TFRecord 文件，以及 如何从TFRecord 文件中读取数据。
-- Inception V3 是Inception 模型（即GoogLeNet）的改进版，可以参考论文Rethinking the Inception Architecture for Computer Vision 了解 其结构细节。
