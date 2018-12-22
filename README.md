@@ -16,4 +16,8 @@
 |[7.Transfer Learning for Flowers Classifier by VGG16](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/7.Transfer%20Learning%20for%20Flowers%20Classifier%20by%20VGG16)|迁移学习:基于VGG-16模型实现花朵分类|
 |[8.Transfer Learning for Dog Classifier by VGG16](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/8.Transfer%20Learning%20for%20Dog%20Classifier%20by%20VGG16)|迁移学习:基于VGG-16模型实现狗狗分类|
 |[9.MNIST ALL IN](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/9.MNIST%20ALL%20IN)|MNIST数据集基础解析及操作|
- 	
+|[10.CIFAR-10 ALL IN](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/10.CIFAR-10%20ALL%20IN)|CIFAR-10数据集基础解析及操作|
+|[11.Build My Recognition Model](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/11.Build%20My%20Recognition%20Model)|打造自己的高效图像识别分类模型|
+
+
+
