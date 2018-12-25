@@ -1,4 +1,4 @@
-## 8.Transfer Learning for Dog Classifier by VGG16
+## Transfer Learning for Dog Classifier by VGG16
 ## (迁移学习-基于VGG-16模型快速实现大数据集下狗狗的分类器的训练和分类)
 
 ### 项目背景

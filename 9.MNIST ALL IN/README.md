@@ -1,4 +1,4 @@
-## 9.MNIST ALL IN
+## MNIST ALL IN
 ## (MNIST数据集基础解析及操作)
 
 ### 项目背景

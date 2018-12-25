@@ -1,4 +1,4 @@
-## 10.CIFAR-10 ALL IN
+## CIFAR-10 ALL IN
 ## (CIFAR-10数据集基础解析及操作)
 
 ### 项目背景

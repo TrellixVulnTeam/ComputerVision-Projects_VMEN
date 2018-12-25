@@ -1,4 +1,4 @@
-## 11.Build My Recognition Model
+## Build My Recognition Model
 ## (打造自己的高效图像识别分类模型)
 
 ### 项目流程

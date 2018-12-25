@@ -1,13 +1,11 @@
-# coding:utf-8
 from __future__ import print_function
 import os
-from io import BytesIO
-import numpy as np
-from functools import partial
 import PIL.Image
 import scipy.misc
+import numpy as np
+from io import BytesIO
 import tensorflow as tf
-
+from functools import partial
 
 graph = tf.Graph()
 model_fn = 'tensorflow_inception_graph.pb'
@@ -64,13 +62,16 @@ def calc_grad_tiled(img, t_grad, tile_size=512):
 
 def tffunc(*argtypes):
     placeholders = list(map(tf.placeholder, argtypes))
+
     def wrap(f):
         out = f(*placeholders)
+
         def wrapper(*args, **kw):
             return out.eval(dict(zip(placeholders, args)), session=kw.get('session'))
-        return wrapper
-    return wrap
 
+        return wrapper
+
+    return wrap
 
 
 def render_deepdream(t_obj, img0,
@@ -80,7 +81,6 @@ def render_deepdream(t_obj, img0,
 
     img = img0
     # 同样将图像进行金字塔分解
-    # 此时提取高频、低频的方法比较简单。直接缩放就可以
     octaves = []
     for i in range(octave_n - 1):
         hw = img.shape[:2]
@@ -104,14 +104,14 @@ def render_deepdream(t_obj, img0,
 
 
 if __name__ == '__main__':
-    img0 = PIL.Image.open('test.jpg')
+    img0 = PIL.Image.open('background.jpg')
     img0 = np.float32(img0)
 
-    name = 'mixed4d_3x3_bottleneck_pre_relu'
-    channel = 139
-    layer_output = graph.get_tensor_by_name("import/%s:0" % name)
-    render_deepdream(layer_output[:, :, :, channel], img0)
-
-    # name = 'mixed4c'
+    # name = 'mixed4d_3x3_bottleneck_pre_relu'
+    # channel = 139
     # layer_output = graph.get_tensor_by_name("import/%s:0" % name)
-    # render_deepdream(tf.square(layer_output), img0)
+    # render_deepdream(layer_output[:, :, :, channel], img0)
+
+    name = 'mixed4c'
+    layer_output = graph.get_tensor_by_name("import/%s:0" % name)
+    render_deepdream(tf.square(layer_output), img0)
