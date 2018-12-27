@@ -14,10 +14,10 @@
 
 ### 效果图
 #### ·加载API中SSD+MobileNet模型实现目标检测效果
-<img width="500" height="400" src="./figures/tutor_1.jpg"/>
+<img width="500" height="400" src="./figures/tutor_1.png"/>
 
 #### ·加载API中SSD+MobileNet模型实现目标检测效果
-<img width="500" height="400" src="./figures/tutor_2.jpg"/>
+<img width="500" height="400" src="./figures/tutor_2.png"/>
 
 ### 训练新模型
 先在地址http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar 下载VOC2012数据集并解压。

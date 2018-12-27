@@ -19,3 +19,4 @@
 |[10.CIFAR-10 ALL IN](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/10.CIFAR-10%20ALL%20IN)|CIFAR-10数据集基础解析及操作|
 |[11.Build My Recognition Model](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/11.Build%20My%20Recognition%20Model)|打造自己的高效图像识别分类模型|
 |[12.DeepDream Model](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/12.DeepDream%20Model)|DeepDream模型探索|
+|[13.Object Detection](https://github.com/LittleHeap/ComputerVision-Projects/tree/master/13.Object%20Detection)|目标检测项目|
