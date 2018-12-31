@@ -29,7 +29,7 @@ python src/align/align_dataset_mtcnn.py \
 
 #### 使用已有模型验证LFW数据库准确
 
-在地址https://drive.google.com/file/d/0B5MzpY9kBtDVZ2RpVDYwWmxoSUk下载解压得到4个模型文件夹，将它们拷贝到~/models/facenet/20170512-110547/中。
+在地址 https://drive.google.com/file/d/0B5MzpY9kBtDVZ2RpVDYwWmxoSUk 下载解压得到4个模型文件夹，将它们拷贝到~/models/facenet/20170512-110547/中。
 
 之后运行代码：
 ```
