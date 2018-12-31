@@ -40,13 +40,14 @@ import random
 import re
 from tensorflow.python.platform import gfile
 
+# 三元组损失函数
 def triplet_loss(anchor, positive, negative, alpha):
     """Calculate the triplet loss according to the FaceNet paper
     
     Args:
-      anchor: the embeddings for the anchor images.
-      positive: the embeddings for the positive images.
-      negative: the embeddings for the negative images.
+      anchor: the embeddings for the anchor images. 人脸样本特征
+      positive: the embeddings for the positive images. anchor的正样本特征
+      negative: the embeddings for the negative images. anchor的负样本特征
   
     Returns:
       the triplet loss according to the FaceNet paper as a float tensor.
@@ -72,19 +73,28 @@ def decov_loss(xs):
     corr_diag_sqr = tf.reduce_sum(tf.square(tf.diag_part(corr)))
     loss = 0.5*(corr_frob_sqr - corr_diag_sqr)
     return loss 
-  
+
+# 中心损失定义函数
 def center_loss(features, label, alfa, nrof_classes):
     """Center loss based on the paper "A Discriminative Feature Learning Approach for Deep Face Recognition"
        (http://ydwen.github.io/papers/WenECCV16.pdf)
     """
+    # 神经网络提取人脸特征的尺寸
     nrof_features = features.get_shape()[1]
+    # centers是各个类别对应的类别中心
     centers = tf.get_variable('centers', [nrof_classes, nrof_features], dtype=tf.float32,
         initializer=tf.constant_initializer(0), trainable=False)
     label = tf.reshape(label, [-1])
+    # 根据label取出features中每一个样本对应的类别中心
     centers_batch = tf.gather(centers, label)
+    # 计算各个类别中心和各个样本的差距diff
+    # diff中用到一个超参数alfa是控制中心位置更新幅度的
     diff = (1 - alfa) * (centers_batch - features)
+    # 用diff更新中心
     centers = tf.scatter_sub(centers, label, diff)
+    # 计算loss损失
     loss = tf.reduce_mean(tf.square(features - centers_batch))
+    # 返回损失loss和更新后的中心
     return loss, centers
 
 def get_image_paths_and_labels(dataset):

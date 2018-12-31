@@ -37,7 +37,6 @@ import align.detect_face
 
 
 def main(args):
-
     images = load_and_align_data(args.image_files, args.image_size, args.margin, args.gpu_memory_fraction)
     with tf.Graph().as_default():
 
@@ -77,7 +76,6 @@ def main(args):
 
 
 def load_and_align_data(image_paths, image_size, margin, gpu_memory_fraction):
-
     minsize = 20  # minimum size of face
     threshold = [0.6, 0.7, 0.7]  # three steps's threshold
     factor = 0.709  # scale factor
@@ -91,7 +89,7 @@ def load_and_align_data(image_paths, image_size, margin, gpu_memory_fraction):
 
     nrof_samples = len(image_paths)
     img_list = [None] * nrof_samples
-    for i in xrange(nrof_samples):
+    for i in range(nrof_samples):
         img = misc.imread(os.path.expanduser(image_paths[i]))
         img_size = np.asarray(img.shape)[0:2]
         bounding_boxes, _ = align.detect_face.detect_face(img, minsize, pnet, rnet, onet, threshold, factor)
@@ -122,6 +120,7 @@ def parse_arguments(argv):
     parser.add_argument('--gpu_memory_fraction', type=float,
                         help='Upper bound on the amount of GPU memory that will be used by the process.', default=1.0)
     return parser.parse_args(argv)
+
 
 if __name__ == '__main__':
     main(parse_arguments(sys.argv[1:]))
