@@ -74,3 +74,7 @@ if __name__ == '__main__':
     tf.app.run()
 
 # python eval.py --model_file models/wave.ckpt-done --image_file img/test.jpg
+# python eval.py --model_file models/wave.ckpt-done --image_file img/p1.jpeg
+# python eval.py --model_file models/denoised_starry.ckpt-done --image_file img/p1.jpeg
+# python eval.py --model_file models/denoised_starry.ckpt-done --image_file img/NY.JPG
+# python eval.py --model_file models/wave.ckpt-done --image_file img/NY.JPG
