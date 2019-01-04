@@ -1,26 +1,26 @@
-## Basic configuration
-style_image: img/wave.jpg # targeted style image
-naming: "wave" # the name of this model. Determine the path to save checkpoint and events file.
-model_path: models  # root path to save checkpoint and events file. The final path would be <model_path>/<naming>
+## 基础配置
+style_image: img/wave.jpg # 制定原始风格图片
+naming: "wave" # 模型名称：决定checkpoint和events文件
+model_path: models  # 模型根目录
 
-## Weight of the loss
-content_weight: 1.0  # weight for content features loss
-style_weight: 220.0  # weight for style features loss
-tv_weight: 0.0  # weight for total variation loss
+## 各个损失的权重
+content_weight: 1.0  # 内容损失权重
+style_weight: 220.0  # 风格损失权重
+tv_weight: 0.0  # total variation损失权重
 
-## The size, the iter number to run
-image_size: 256
-batch_size: 4
-epoch: 2
+## 尺寸
+image_size: 256  # 训练原始图片的大小
+batch_size: 4  # 一次batch的样本数
+epoch: 2  # 跑的epoch的运行次数
 
-## Loss Network
-loss_model: "vgg_16"
-content_layers:  # use these layers for content loss
+## 损失网络
+loss_model: "vgg_16"  # 使用VGG16模型
+content_layers:  # 使用如下层定义内容损失
   - "vgg_16/conv3/conv3_3"
-style_layers:  # use these layers for style loss
+style_layers:  # 使用如下层定义风格损失
   - "vgg_16/conv1/conv1_2"
   - "vgg_16/conv2/conv2_2"
   - "vgg_16/conv3/conv3_3"
   - "vgg_16/conv4/conv4_3"
-checkpoint_exclude_scopes: "vgg_16/fc"  # we only use the convolution layers, so ignore fc layers.
-loss_model_file: "pretrained/vgg_16.ckpt"  # the path to the checkpoint
+checkpoint_exclude_scopes: "vgg_16/fc"  # 删除全连接层
+loss_model_file: "pretrained/vgg_16.ckpt"  # 存储checkpoint的对应位置

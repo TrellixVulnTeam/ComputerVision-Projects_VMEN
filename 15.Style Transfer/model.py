@@ -3,7 +3,6 @@ import tensorflow as tf
 
 def conv2d(x, input_filters, output_filters, kernel, strides, mode='REFLECT'):
     with tf.variable_scope('conv'):
-
         shape = [kernel, kernel, input_filters, output_filters]
         weight = tf.Variable(tf.truncated_normal(shape, stddev=0.1), name='weight')
         x_padded = tf.pad(x, [[0, 0], [kernel / 2, kernel / 2], [kernel / 2, kernel / 2], [0, 0]], mode=mode)
@@ -12,7 +11,6 @@ def conv2d(x, input_filters, output_filters, kernel, strides, mode='REFLECT'):
 
 def conv2d_transpose(x, input_filters, output_filters, kernel, strides):
     with tf.variable_scope('conv_transpose'):
-
         shape = [kernel, kernel, output_filters, input_filters]
         weight = tf.Variable(tf.truncated_normal(shape, stddev=0.1), name='weight')
 
@@ -92,16 +90,20 @@ def residual(x, filters, kernel, strides):
         return residual
 
 
+# 定义图像生成网络
 def net(image, training):
-    # Less border effects when padding a little before passing through ..
+    # 图片加上额外边框消除边缘效应
     image = tf.pad(image, [[0, 0], [10, 10], [10, 10], [0, 0]], mode='REFLECT')
 
+    # 三层卷积层
     with tf.variable_scope('conv1'):
         conv1 = relu(instance_norm(conv2d(image, 3, 32, 9, 1)))
     with tf.variable_scope('conv2'):
         conv2 = relu(instance_norm(conv2d(conv1, 32, 64, 3, 2)))
     with tf.variable_scope('conv3'):
         conv3 = relu(instance_norm(conv2d(conv2, 64, 128, 3, 2)))
+
+    # 仿照ResNet跳过一些连接
     with tf.variable_scope('res1'):
         res1 = residual(conv3, 128, 3, 1)
     with tf.variable_scope('res2'):
@@ -113,6 +115,8 @@ def net(image, training):
     with tf.variable_scope('res5'):
         res5 = residual(res4, 128, 3, 1)
     # print(res5.get_shape())
+
+    # 定义卷积之后的反卷积：不采用转置卷积，采用放大再卷积的方式，以消除噪点
     with tf.variable_scope('deconv1'):
         # deconv1 = relu(instance_norm(conv2d_transpose(res5, 128, 64, 3, 2)))
         deconv1 = relu(instance_norm(resize_conv2d(res5, 128, 64, 3, 2, training)))
@@ -123,9 +127,10 @@ def net(image, training):
         # deconv_test = relu(instance_norm(conv2d(deconv2, 32, 32, 2, 1)))
         deconv3 = tf.nn.tanh(instance_norm(conv2d(deconv2, 32, 3, 9, 1)))
 
+    # 将-1~1的输出值域放大到0~255
     y = (deconv3 + 1) * 127.5
 
-    # Remove border effect reducing padding.
+    # 去除一开始为了防止边缘效应而加入的边框
     height = tf.shape(y)[1]
     width = tf.shape(y)[2]
     y = tf.slice(y, [0, 10, 10, 0], tf.stack([-1, height - 20, width - 20, -1]))

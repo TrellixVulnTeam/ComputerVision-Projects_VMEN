@@ -26,27 +26,37 @@ def main(FLAGS):
 
     # Make sure the training path exists.
     training_path = os.path.join(FLAGS.model_path, FLAGS.naming)
-    if not(os.path.exists(training_path)):
+    if not (os.path.exists(training_path)):
         os.makedirs(training_path)
 
     with tf.Graph().as_default():
         with tf.Session() as sess:
             """Build Network"""
+            # 损失网路：无需训练，定义training为FALSE
             network_fn = nets_factory.get_network_fn(
                 FLAGS.loss_model,
                 num_classes=1,
                 is_training=False)
 
+            # 损失网络中要用的图像的预处理函数
             image_preprocessing_fn, image_unprocessing_fn = preprocessing_factory.get_preprocessing(
                 FLAGS.loss_model,
                 is_training=False)
+
+            # 读入的训练图像
             processed_images = reader.image(FLAGS.batch_size, FLAGS.image_size, FLAGS.image_size,
                                             'train2014/', image_preprocessing_fn, epochs=FLAGS.epoch)
+
+            # 引入图像生成网络：需要训练，定义training为TRUE
             generated = model.net(processed_images, training=True)
+
+            # 将生成的图像同样使用预处理生成函数进行处理，因为它同样要被送到损失网路中
             processed_generated = [image_preprocessing_fn(image, FLAGS.image_size, FLAGS.image_size)
                                    for image in tf.unstack(generated, axis=0, num=FLAGS.batch_size)
                                    ]
             processed_generated = tf.stack(processed_generated)
+
+            # 将原始图像和生成图像送到损失网络中，此处将二者合并送入，以加快计算速度
             _, endpoints_dict = network_fn(tf.concat([processed_generated, processed_images], 0), spatial_squeeze=False)
 
             # Log the structure of loss network
@@ -55,10 +65,14 @@ def main(FLAGS):
                 tf.logging.info(key)
 
             """Build Losses"""
+            # 定义内容损失
             content_loss = losses.content_loss(endpoints_dict, FLAGS.content_layers)
+            # 定义风格损失
             style_loss, style_loss_summary = losses.style_loss(endpoints_dict, style_features_t, FLAGS.style_layers)
+            # 定义tv损失
             tv_loss = losses.total_variation_loss(generated)  # use the unprocessed image
 
+            # 总损失是之前的损失加权和，最后利用总损失优化网络即可
             loss = FLAGS.style_weight * style_loss + FLAGS.content_weight * content_loss + FLAGS.tv_weight * tv_loss
 
             # Add Summary for visualization in tensorboard.
@@ -85,16 +99,25 @@ def main(FLAGS):
             """Prepare to Train"""
             global_step = tf.Variable(0, name="global_step", trainable=False)
 
+            # 找出需要训练的变量存储到checkpoint中：生成网络中的参数训练，损失网路中的参数不动
             variable_to_train = []
+            # 使用tf.trainable_variables()找出需要训练的参量
             for variable in tf.trainable_variables():
-                if not(variable.name.startswith(FLAGS.loss_model)):
+                # 如果不在损失网路中，就把这些参数加入到列表中
+                if not (variable.name.startswith(FLAGS.loss_model)):
                     variable_to_train.append(variable)
+            # 定义训练步骤指定var_list=variable_to_train，这样不会训练损失网络
             train_op = tf.train.AdamOptimizer(1e-3).minimize(loss, global_step=global_step, var_list=variable_to_train)
 
+            # 找出需要保存的变量
             variables_to_restore = []
+            # 使用tf.global_variables()找出所有变量
             for v in tf.global_variables():
-                if not(v.name.startswith(FLAGS.loss_model)):
+                # 如果不在损失网络中就要加入列表variables_to_restore
+                if not (v.name.startswith(FLAGS.loss_model)):
                     variables_to_restore.append(v)
+
+            # 定义saver指定只会保存variables_to_restore
             saver = tf.train.Saver(variables_to_restore, write_version=tf.train.SaverDef.V1)
 
             sess.run([tf.global_variables_initializer(), tf.local_variables_initializer()])
