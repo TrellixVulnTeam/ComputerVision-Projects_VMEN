@@ -41,3 +41,36 @@ tensorboard --logdir models/wave/
 
 训练中保存的模型在文件夹models/wave/中。
 
+### 效果图
+#### ·原始图像
+<img width="600" height="400" src="./img/test.jpg"/>
+
+#### ·目标风格图像
+<img width="600" height="400" src="./img/wave.jpg"/>
+
+#### ·风格迁移效果图像
+<img width="600" height="400" src="./img/results/wave.jpg"/>
+
+#### ·目标风格图像
+<img width="600" height="400" src="./img/udnie.jpg"/>
+
+#### ·风格迁移效果图像
+<img width="600" height="400" src="./img/results/udnie.jpg"/>
+
+#### ·目标风格图像
+<img width="600" height="400" src="./img/cubist.jpg"/>
+
+#### ·风格迁移效果图像
+<img width="600" height="400" src="./img/results/cubist.jpg"/>
+
+#### ·目标风格图像
+<img width="600" height="400" src="./img/denoised_starry.jpg"/>
+
+#### ·风格迁移效果图像
+<img width="600" height="400" src="./img/results/denoised_starry.jpg"/>
+
+#### ·目标风格图像
+<img width="600" height="400" src="./img/mosaic.jpg"/>
+
+#### ·风格迁移效果图像
+<img width="600" height="400" src="./img/results/mosaic.jpg"/>
